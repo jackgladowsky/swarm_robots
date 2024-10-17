@@ -9,6 +9,7 @@ class Graph {
 public:
     int numNodes; // Number of nodes in graph
     std::vector<GraphNode*> nodes; // Vector of nodes in graph
+    GraphNode* controlPoint; // Control point node
     
     Graph(int numNodes = 5); // constructor with default argument
     void printGraph(); // print the graph

@@ -25,9 +25,10 @@ Graph::Graph(int numNodes) : numNodes(numNodes) {
     }
 
     // set control point
-    int controlPoint = rand() % numNodes;
-    nodes[controlPoint]->state = CONTROL;
-
+    int controlPointIndex = rand() % numNodes;
+    nodes[controlPointIndex]->state = CONTROL;
+    controlPoint = nodes[controlPointIndex];
+    
     // set neighbors randomly, each node can have up to 4 neighbors
     // neighbors are not necesarrily adjacent values in the list 
     // but just two nodes that have a connection.
