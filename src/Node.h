@@ -1,3 +1,6 @@
+#ifndef NODE_H
+#define NODE_H
+
 #include <vector>
 
 enum NodeState {
@@ -14,6 +17,9 @@ public:
     std::vector<GraphNode*> neighbors;
 
     GraphNode(int id, NodeState state) : NodeID(id), state(state) {};
+    void printNode();
 private:
 
 };
+
+#endif
