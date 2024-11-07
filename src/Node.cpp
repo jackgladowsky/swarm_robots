@@ -21,7 +21,7 @@ void GraphNode::printNode() {
             break;
     }
     std::cout << "Neighbors: ";
-        for (int j = 0; j < this->neighbors.size(); j++) {
+        for (size_t j = 0; j < this->neighbors.size(); j++) {
             std::cout << this->neighbors[j]->NodeID << " ";
         }
         std::cout << std::endl;

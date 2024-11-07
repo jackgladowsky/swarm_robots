@@ -9,7 +9,7 @@ int main() {
     Robot robot1;
 
     Graph graph(10);
-    //graph.printGraph();
+    graph.printGraph();
 
     Controller controller;
 

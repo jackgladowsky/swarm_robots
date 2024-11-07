@@ -21,9 +21,9 @@ void Robot::mapGraph(Graph* graph, std::vector<GraphNode*> visited) {
 
     // DFS
     // loop through current nodes neighbors
-    for (int i = 0; i < currNode->neighbors.size(); i++) {
+    for (size_t i = 0; i < currNode->neighbors.size(); i++) {
         // check if current neighbor has been visited
-        for (int j = 0; j < visited.size(); j++){
+        for (size_t j = 0; j < visited.size(); j++){
             if (currNode->NodeID == visited[j]->NodeID) {
                 return;
             }

@@ -44,7 +44,7 @@ Graph::Graph(int numNodes) : numNodes(numNodes) {
                 bool exists = false;
 
                 // loop through current nodes neighbors
-                for (int k = 0; k < nodes[i]->neighbors.size(); k++) {
+                for (size_t k = 0; k < nodes[i]->neighbors.size(); k++) {
                     // check if current node and current nodes neighbors has 4 already
                     // if (nodes[i]->neighbors.size() == 4 || nodes[i]->neighbors[k]->neighbors.size() == 4){
                     //     break;
@@ -88,7 +88,7 @@ void Graph::printGraph() {
                 break;
         }
         std::cout << "Neighbors: ";
-        for (int j = 0; j < nodes[i]->neighbors.size(); j++) {
+        for (size_t j = 0; j < nodes[i]->neighbors.size(); j++) {
             std::cout << nodes[i]->neighbors[j]->NodeID << " ";
         }
         std::cout << std::endl;
