@@ -16,8 +16,9 @@ public:
     bool isRetrieving;
     int robotID;
 
-    Robot();
+    Robot(int id);
     void mapGraph(Graph* graph, std::vector<GraphNode*> visited);
+    void move(Graph* graph, std::vector<GraphNode*> visited);
 private:
     void dfsRecursive();
 };

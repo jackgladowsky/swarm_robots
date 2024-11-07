@@ -6,12 +6,11 @@
 int main() {
     std::cout << "Hello Swarm Robots!" << std::endl;
 
-    Robot robot1;
-
     Graph graph(10);
-    graph.printGraph();
+    //graph.printGraph();
 
     Controller controller;
+    controller.map();
 
     return 0;
 }

@@ -13,7 +13,9 @@ public:
     std::vector<GraphNode*> visitedNodes;
     Graph* graphMap;
     bool mapping;
+    int numRobots = 3;
 
+    void createRobots(int numRobs);
     void map();
 
 private:

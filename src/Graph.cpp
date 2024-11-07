@@ -64,7 +64,6 @@ Graph::Graph(int numNodes) : numNodes(numNodes) {
             }
         }
     }
-
 }
 
 // print the entire graph
