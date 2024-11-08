@@ -7,9 +7,9 @@ int main() {
     std::cout << "Hello Swarm Robots!" << std::endl;
 
     Graph graph(10);
-    //graph.printGraph();
+    // graph.printGraph();
 
-    Controller controller;
+    Controller controller(&graph);
     controller.map();
 
     return 0;

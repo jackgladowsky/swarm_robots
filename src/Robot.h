@@ -17,10 +17,10 @@ public:
     int robotID;
 
     Robot(int id);
-    void mapGraph(Graph* graph, std::vector<GraphNode*> visited);
-    void move(Graph* graph, std::vector<GraphNode*> visited);
+    // void mapGraph(Graph* graph, std::vector<GraphNode*> visited);
+    void move(Graph* graph, std::vector<GraphNode*>* visited);
 private:
-    void dfsRecursive();
+    bool visitedNode(GraphNode* node, std::vector<GraphNode*> visited);
 };
 
 #endif
