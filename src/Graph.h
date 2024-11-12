@@ -11,7 +11,10 @@ public:
     std::vector<GraphNode*> nodes; // Vector of nodes in graph
     GraphNode* controlPoint; // Control point node
     
-    Graph(int numNodes = 5); // constructor with default argument
+    Graph(int numNodes); // constructor with default argument
+    Graph(int numNodes, bool empty, GraphNode* cp); // constructor with default argument
+
+    Graph init_empty(int numNodes = 5);
     void printGraph(); // print the graph
 private:
     int obsCount = 0;

@@ -11,6 +11,7 @@ int main() {
 
     Controller controller(&graph);
     controller.map();
+    controller.printExploredMap();
 
     return 0;
 }

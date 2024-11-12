@@ -11,7 +11,7 @@ Robot::Robot(int id) {
 
 void Robot::move(Graph* graph, std::vector<GraphNode*>* visited) {
     // get neighbors
-    for (size_t i = 0; i < currNode->neighbors.size(); i++){
+    for (size_t i = 0; i < currNode->neighbors.size(); i++) {
         // choose random neighbor
         int randNeighbor = rand() % currNode->neighbors.size();
         // check if random neighbor has veen visited
@@ -23,7 +23,7 @@ void Robot::move(Graph* graph, std::vector<GraphNode*>* visited) {
             // if not checked, set currNode to new node & add node to visited
             prevNode = currNode;
             currNode = currNode->neighbors[randNeighbor];
-            visited->push_back(currNode);
+            // visited->push_back(currNode); // robots send current node data to controller
             std::cout << "Node ID: " << currNode->NodeID << std::endl;
             std::cout << "Node State: ";
             switch (currNode->state) {
@@ -47,8 +47,10 @@ void Robot::move(Graph* graph, std::vector<GraphNode*>* visited) {
             std::cout << std::endl;
             return;
         }
-
     }
+    std::cout << "All possible nodes have been visited." << std::endl;
+    std::cout << "------------------------------------" << std::endl;
+    return;
 }
 
 
@@ -60,16 +62,3 @@ bool Robot::visitedNode(GraphNode* node, std::vector<GraphNode*> visited) {
     }
     return false;
 }
-
-// void Robot::mapGraph(Graph* graph, std::vector<GraphNode*> visited) {
-//     if (isMapping || isRetrieving) {
-//         std::cout << "Already performing task." << std::endl;
-//     }
-
-//     std::cout << "ROBOT " << robotID << " STARTING MAPPING" << std::endl;
-//     isMapping = true;
-//     // enter graph at control point
-//     currNode = graph->controlPoint;
-//     visited.push_back(currNode);
-// }
-
