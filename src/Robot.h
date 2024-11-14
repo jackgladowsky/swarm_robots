@@ -18,7 +18,7 @@ public:
 
     Robot(int id);
     // void mapGraph(Graph* graph, std::vector<GraphNode*> visited);
-    void move(Graph* graph, std::vector<GraphNode*>* visited);
+    void move(std::vector<GraphNode*>* visited);
 private:
     bool visitedNode(GraphNode* node, std::vector<GraphNode*> visited);
 };

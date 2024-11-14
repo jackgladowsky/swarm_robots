@@ -66,15 +66,13 @@ Graph::Graph(int numNodes) : numNodes(numNodes) {
     }
 }
 
-Graph::Graph(int numNodes, bool empty, GraphNode* cp) : numNodes(numNodes) {
-    GraphNode* node = new GraphNode(0, CLEAR);
-    // nodes.push_back(cp);
+Graph::Graph(int numNodes, GraphNode* cp) : numNodes(numNodes) {
     controlPoint = cp;
 }
 
 // print the entire graph
 void Graph::printGraph() {
-    for (int i = 0; i < nodes.size(); i++) {
+    for (size_t i = 0; i < nodes.size(); i++) {
         std::cout << "--------------------------------------" << std::endl;
         std::cout << "Node ID: " << nodes[i]->NodeID << std::endl;
         std::cout << "Node State: ";

@@ -9,7 +9,7 @@ Robot::Robot(int id) {
     std::cout << "ROBOT " << robotID << " CREATED." << std::endl;
 }
 
-void Robot::move(Graph* graph, std::vector<GraphNode*>* visited) {
+void Robot::move(std::vector<GraphNode*>* visited) {
     // get neighbors
     for (size_t i = 0; i < currNode->neighbors.size(); i++) {
         // choose random neighbor

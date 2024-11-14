@@ -12,7 +12,7 @@ public:
     std::vector<Robot*> robots;
     std::vector<GraphNode*> visitedNodes;
     Graph* graphMap; // this is actual graph
-    Graph* exploredMap = new Graph(10, true, graphMap->controlPoint); // controller's version of the map
+    Graph* exploredMap = new Graph(10, graphMap->controlPoint); // controller's version of the map
     bool mapping;
     int numRobots = 1;
 
