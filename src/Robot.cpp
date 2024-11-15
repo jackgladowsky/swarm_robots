@@ -9,18 +9,19 @@ Robot::Robot(int id) {
     std::cout << "ROBOT " << robotID << " CREATED." << std::endl;
 }
 
-void Robot::move(std::vector<GraphNode*>* visited) {
+void Robot::move(std::vector<GraphNode*> *visited) {
     // get neighbors
     for (size_t i = 0; i < currNode->neighbors.size(); i++) {
         // choose random neighbor
+        //int randNeighbor = chooseRandNeighborNode(*visited);
         int randNeighbor = rand() % currNode->neighbors.size();
         // check if random neighbor has veen visited
-        if (visitedNode(currNode->neighbors[randNeighbor], *visited)){
+        if (visitedNode(currNode->neighbors[randNeighbor]->NodeID, *visited)){
             // if visisted, choose new neighbor node
             continue;
         }
         else{
-            // if not checked, set currNode to new node & add node to visited
+            // if not checked, set currNode to new node & add node sto visited
             prevNode = currNode;
             currNode = currNode->neighbors[randNeighbor];
             // visited->push_back(currNode); // robots send current node data to controller
@@ -48,17 +49,34 @@ void Robot::move(std::vector<GraphNode*>* visited) {
             return;
         }
     }
-    std::cout << "All possible nodes have been visited." << std::endl;
+    std::cout << "All possible neighbor nodes from this robots current node have been visited." << std::endl;
     std::cout << "------------------------------------" << std::endl;
     return;
 }
 
 
-bool Robot::visitedNode(GraphNode* node, std::vector<GraphNode*> visited) {
+bool Robot::visitedNode(int nodeID, std::vector<GraphNode*> visited) {
     for (size_t i = 0; i < visited.size(); i++) {
-        if (visited[i]->NodeID == node->NodeID) {
+        if (visited[i]->NodeID == nodeID) {
             return true;
         }
     }
     return false;
 }
+
+int Robot::chooseRandNeighborNode(std::vector<GraphNode*> visited) {
+    int randNeighbor = rand() % currNode->neighbors.size();
+
+    if (visitedNode(randNeighbor, visited)) {
+        chooseRandNeighborNode(visited);
+        return randNeighbor;
+    }
+    else {
+        return randNeighbor;
+    }
+}
+
+
+// random num = 
+// if randNum is in visited
+// rerun until rand isnt

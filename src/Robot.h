@@ -11,6 +11,7 @@ class Robot {
 public:
     GraphNode* currNode;
     GraphNode* prevNode;
+    //std::vector<GraphNode*> prevNodes;
     bool hasObject;
     bool isMapping;
     bool isRetrieving;
@@ -18,9 +19,10 @@ public:
 
     Robot(int id);
     // void mapGraph(Graph* graph, std::vector<GraphNode*> visited);
-    void move(std::vector<GraphNode*>* visited);
+    void move(std::vector<GraphNode*> *visited);
 private:
-    bool visitedNode(GraphNode* node, std::vector<GraphNode*> visited);
+    bool visitedNode(int nodeID, std::vector<GraphNode*> visited);
+    int chooseRandNeighborNode(std::vector<GraphNode*> visited);
 };
 
 #endif

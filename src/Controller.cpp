@@ -31,16 +31,14 @@ void Controller::map() {
 
             updateExploredMap(robots[i]);
             robots[i]->move(&visitedNodes); 
-
-            
-
-            // if (visitedNodes.size() == exploredMap->nodes.size())
-            // {
-            //     return;
-            // }
         }
-        count++;
-
+        // Mapping Stop Condition
+        // when all explored nodes have been visited
+        if (visitedNodes.size() == exploredMap->nodes.size()) {
+            std::cout <<  "All explored nodes have been visited.\n";
+            return;
+        }
+        //count++;
     }
 }
 
@@ -76,7 +74,6 @@ void Controller::updateExploredMap(Robot* currRobot){
         return;
     }
     else { // if the current real node has NOT been visited
-        std::cout << "start\n";
         visitedNodes.push_back(currRealNode); // set currRealNode to visited
 
         GraphNode* currNodeCopy = new GraphNode(currRealNode->NodeID, currRealNode->state); // create the copy of the currNode
@@ -88,7 +85,6 @@ void Controller::updateExploredMap(Robot* currRobot){
         }
         else {
             free(currNodeCopy);
-            std::cout <<"return\n";
             return;
         }
 
@@ -109,13 +105,12 @@ void Controller::updateExploredMap(Robot* currRobot){
                 currNeighborCopy->neighbors.push_back(currNodeCopy); // set the newNode as newNeighbor neighbor
             }
         }
-
     }
 }
 
 
 GraphNode* Controller::findExploredNode(int nodeID) {
-    for (size_t i=0; i > exploredMap->nodes.size(); i++) {
+    for (size_t i=0; i < exploredMap->nodes.size(); i++) {
         if (nodeID == exploredMap->nodes[i]->NodeID) {
             return exploredMap->nodes[i];
         }
@@ -126,7 +121,7 @@ GraphNode* Controller::findExploredNode(int nodeID) {
 
 
 bool Controller::isVisited(GraphNode* node) {
-    for (size_t i=0; i > visitedNodes.size(); i++) {
+    for (size_t i=0; i < visitedNodes.size(); i++) {
         // if the current node has been visited
         if (node->NodeID == visitedNodes[i]->NodeID) {
             return true;
@@ -136,7 +131,8 @@ bool Controller::isVisited(GraphNode* node) {
 }
 
 bool Controller::isExplored(GraphNode* node) {
-    for (size_t i=0; i > exploredMap->nodes.size(); i++) {
+
+    for (size_t i=0; i < exploredMap->nodes.size(); i++) {
         // if the current node has been visited
         if (node->NodeID == exploredMap->nodes[i]->NodeID) {
             return true;
