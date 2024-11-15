@@ -14,6 +14,7 @@ void Controller::map() {
     std::cout << "------------------------------------" << std::endl;
     std::cout << "Start Mapping..." << std::endl;
     mapping = true;
+    std::cout << "On node: " << graphMap->controlPoint->NodeID << "\n";
     std::cout << "Control Node neighbors: ";
     for (size_t j = 0; j < graphMap->controlPoint->neighbors.size(); j++) {
         std::cout << graphMap->controlPoint->neighbors[j]->NodeID << " ";
@@ -24,20 +25,22 @@ void Controller::map() {
     int count = 0;
 
     while (mapping) {
-        if (count == 3) return;
+        if (count == 10) return;
         for (size_t i=0; i < robots.size(); i++) {
             std::cout << "------------------------------------" << std::endl;
             std::cout << "Current Robot: " << i << "\n";
 
             updateExploredMap(robots[i]);
             robots[i]->move(&visitedNodes); 
+            updateExploredMap(robots[i]);
 
             
 
-            // if (visitedNodes.size() == exploredMap->nodes.size())
-            // {
-            //     return;
-            // }
+            if (visitedNodes.size() == exploredMap->nodes.size())
+            {
+                std::cout << "all nodes have been visited\n";
+                return;
+            }
         }
         count++;
 
@@ -76,7 +79,7 @@ void Controller::updateExploredMap(Robot* currRobot){
         return;
     }
     else { // if the current real node has NOT been visited
-        std::cout << "start\n";
+        // std::cout << "start\n";
         visitedNodes.push_back(currRealNode); // set currRealNode to visited
 
         GraphNode* currNodeCopy = new GraphNode(currRealNode->NodeID, currRealNode->state); // create the copy of the currNode
@@ -96,6 +99,7 @@ void Controller::updateExploredMap(Robot* currRobot){
 
             GraphNode* currRealNeighbor = currRealNode->neighbors[i]; // get the current neighbor
             bool hasExplored = isExplored(currRealNeighbor);
+            // std::cout << "hasExplored = " << hasExplored << "\n";
 
             if (hasExplored) { // if the currNeighbor has been explored already
                 GraphNode* currNeighborCopy = findExploredNode(currRealNeighbor->NodeID);
@@ -115,7 +119,7 @@ void Controller::updateExploredMap(Robot* currRobot){
 
 
 GraphNode* Controller::findExploredNode(int nodeID) {
-    for (size_t i=0; i > exploredMap->nodes.size(); i++) {
+    for (size_t i=0; i < exploredMap->nodes.size(); i++) {
         if (nodeID == exploredMap->nodes[i]->NodeID) {
             return exploredMap->nodes[i];
         }
@@ -126,7 +130,7 @@ GraphNode* Controller::findExploredNode(int nodeID) {
 
 
 bool Controller::isVisited(GraphNode* node) {
-    for (size_t i=0; i > visitedNodes.size(); i++) {
+    for (size_t i=0; i < visitedNodes.size(); i++) {
         // if the current node has been visited
         if (node->NodeID == visitedNodes[i]->NodeID) {
             return true;
@@ -136,8 +140,11 @@ bool Controller::isVisited(GraphNode* node) {
 }
 
 bool Controller::isExplored(GraphNode* node) {
-    for (size_t i=0; i > exploredMap->nodes.size(); i++) {
+    // std::cout << "explored map size: " << exploredMap->nodes.size() << "\n";
+    for (size_t i=0; i < exploredMap->nodes.size(); i++) {
         // if the current node has been visited
+        // std::cout << "NodeID: " << node->NodeID << "\n";
+        // std::cout << "exploredMap node ID: " << exploredMap->nodes[i]->NodeID << "\n";
         if (node->NodeID == exploredMap->nodes[i]->NodeID) {
             return true;
         }
