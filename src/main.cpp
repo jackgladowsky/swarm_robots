@@ -10,7 +10,8 @@ int main() {
     srand(time(NULL));
 
     Graph graph(10);
-    // graph.printGraph();
+    graph.printGraph();
+    std::cout << "-------------------\n";
 
     Controller controller(&graph);
     controller.map();
