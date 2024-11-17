@@ -14,7 +14,7 @@ public:
     Graph* graphMap; // this is actual graph
     Graph* exploredMap = new Graph(10, graphMap->controlPoint); // controller's version of the map
     bool mapping;
-    int numRobots = 1;
+    int numRobots = 3;
 
     Controller(Graph* graph) : graphMap(graph){};
 

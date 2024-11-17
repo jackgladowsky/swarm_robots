@@ -38,6 +38,16 @@ void Controller::map() {
         std::cout << "Pushing node " << currNeighborCopy->NodeID << " to explored map\n";
     }
 
+    /*
+    To implement obstacle stuff
+    - when a robot is on an obstacle node, don't add the other neighbors 
+    - can't move through that node
+    - in backtracking/BFS
+        - make it so that we don't consider a path through that node
+    */
+
+
+
     int count = 0;
 
     while (mapping) {
@@ -103,13 +113,8 @@ void Controller::updateExploredMap(Robot* currRobot){
         // GraphNode* currNodeCopy = new GraphNode(currRealNode->NodeID, currRealNode->state); // create the copy of the currNode
         GraphNode* currNodeCopy = findExploredNode(currRealNode->NodeID);
 
-        // bool hasExploredNode = isExplored(currRealNode);
-
-        // if (hasExploredNode) {
-        //     currNodeCopy = findExploredNode(currRealNode->NodeID);
-        //     // exploredMap->nodes.push_back(currNodeCopy);
-        //     // std::cout << "Pushing node " << currNodeCopy->NodeID << " to explored map\n";
-        // }
+        // updating state when we visit a node (you don't know state until visiting a node)
+        currNodeCopy->state = currRealNode->state;
 
         for (size_t i=0; i<currRealNode->neighbors.size(); i++) { // loop through the currNodes neighbors
 
@@ -128,7 +133,7 @@ void Controller::updateExploredMap(Robot* currRobot){
                 std::cout << "added " << currNodeCopy->NodeID << " <-> " << currNeighborCopy->NodeID << "\n";
             }
             else { // if the current neighbor has not been explored yet
-                GraphNode* currNeighborCopy = new GraphNode(currRealNeighbor->NodeID, currRealNeighbor->state); // create neighbor copy
+                GraphNode* currNeighborCopy = new GraphNode(currRealNeighbor->NodeID, CLEAR); // create neighbor copy
                 exploredMap->nodes.push_back(currNeighborCopy); // set the newNeighbor as explored
                 std::cout << "Pushing node " << currNeighborCopy->NodeID << " to explored map\n";
                 currNodeCopy->neighbors.push_back(currNeighborCopy); // set the newNeighbor as newNode neighbor
