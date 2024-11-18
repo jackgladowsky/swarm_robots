@@ -4,6 +4,7 @@
 void GraphNode::printNode() {
     std::cout << "------------------------------------" << this->NodeID << std::endl;
 
+    // print node ids and node states
     std::cout << "Node ID: " << this->NodeID << std::endl;
     std::cout << "Node State: ";
     switch (this->state) {
