@@ -24,8 +24,10 @@ void Robot::move(std::vector<GraphNode*>* visited) {
         GraphNode* randNeighbor = unvisitedNeighbors[randNeighborNum];
         
 
-        // if not checked, set currNode to new node & add node to visited
+        // if not checked, set currNode to new node, add node to visited, add prevNode to prevNodeStack
         prevNode = currNode;
+        prevNodeStack.push(prevNode);
+        std::cout << "value pushed to prevNodeStack: " << prevNodeStack.top()->NodeID << "\n";
         currNode = randNeighbor;
         std::cout << "rand neighbor selected: " << randNeighbor->NodeID << "\n";
 
@@ -96,6 +98,9 @@ void Robot::move(std::vector<GraphNode*>* visited) {
     return;
 }
 
+void Robot::moveBack() {
+    // move back along the list of 
+}
 
 bool Robot::visitedNode(GraphNode* node, std::vector<GraphNode*> visited) {
     for (size_t i = 0; i < visited.size(); i++) {
