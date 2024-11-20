@@ -57,15 +57,17 @@ void Controller::map() {
             std::cout << "Current Robot: " << i << "\n";
 
             // updateExploredMap(robots[i]);
-            robots[i]->move(&visitedNodes); 
+            if (!robots[i]->move(&visitedNodes)) {
+                robots[i]->moveBack();
+            }
+            // robots[i]->move(&visitedNodes); 
             updateExploredMap(robots[i]);
 
             // print sizes of explored and visited node lists
             std::cout << "Size of explored: " << exploredMap->nodes.size() << "\n";
             std::cout << "Size of visited: " << visitedNodes.size() << "\n";
 
-            if (visitedNodes.size() == exploredMap->nodes.size())
-            {
+            if (visitedNodes.size() == exploredMap->nodes.size()) {
                 std::cout << "all nodes have been visited\n";
                 return;
             }
@@ -74,8 +76,8 @@ void Controller::map() {
 
     }
 
-    std::cout << "End of graph has been reached... sending robots back" << std::endl;
-    robots[i]->moveBack();
+    // std::cout << "End of graph has been reached... sending robots back" << std::endl;
+    // robots[i]->moveBack();
 }
 
 // Robot 0 start on CP
@@ -112,6 +114,7 @@ void Controller::updateExploredMap(Robot* currRobot){
     else { // if the current real node has NOT been visited
         // std::cout << "start\n";
         visitedNodes.push_back(currRealNode); // set currRealNode to visited
+        std::cout << "pushing " << currRealNode->NodeID << " to visited\n";
 
         // GraphNode* currNodeCopy = new GraphNode(currRealNode->NodeID, currRealNode->state); // create the copy of the currNode
         GraphNode* currNodeCopy = findExploredNode(currRealNode->NodeID);

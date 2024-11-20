@@ -9,7 +9,7 @@ Robot::Robot(int id) {
     std::cout << "ROBOT " << robotID << " CREATED." << std::endl;
 }
 
-void Robot::move(std::vector<GraphNode*>* visited) {
+bool Robot::move(std::vector<GraphNode*>* visited) {
     // get neighbors
     // make sublist of nonvisited neighbors
     std::vector<GraphNode*> unvisitedNeighbors = {};
@@ -53,7 +53,7 @@ void Robot::move(std::vector<GraphNode*>* visited) {
             std::cout << currNode->neighbors[j]->NodeID << " ";
         }
         std::cout << std::endl;
-        return;
+        return true;
     }
     // remove from that list each time a neighbor is visited
     // for (size_t i = 0; i < currNode->neighbors.size(); i++) {
@@ -95,18 +95,23 @@ void Robot::move(std::vector<GraphNode*>* visited) {
     // }
     std::cout << "All possible neighbor nodes have been visited." << std::endl;
     std::cout << "------------------------------------" << std::endl;
-    return;
+    return false;
 }
 
 void Robot::moveBack() {
     // move back along the list of already visited nodes (prevNode stack)
-    currNode = prevNode;
-    prevNodeStack.pop();
-    prevNode = prevNodeStack.top();
-
-    if(prevNodeStack.empty())
-    {
+    if(prevNodeStack.empty()) {
         std::cout << "Robot has returned to origin" << std::endl;
+        return;
+    }
+    currNode = prevNode;
+    std::cout << "pop\n";
+    prevNodeStack.pop();
+    if (!prevNodeStack.empty()) {
+        prevNode = prevNodeStack.top();
+    }
+    else {
+        prevNode = nullptr;
     }
 }
 
