@@ -73,6 +73,9 @@ void Controller::map() {
         count++;
 
     }
+
+    std::cout << "End of graph has been reached... sending robots back" << std::endl;
+    robots[i]->moveBack();
 }
 
 // Robot 0 start on CP

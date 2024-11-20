@@ -99,7 +99,15 @@ void Robot::move(std::vector<GraphNode*>* visited) {
 }
 
 void Robot::moveBack() {
-    // move back along the list of 
+    // move back along the list of already visited nodes (prevNode stack)
+    currNode = prevNode;
+    prevNodeStack.pop();
+    prevNode = prevNodeStack.top();
+
+    if(prevNodeStack.empty())
+    {
+        std::cout << "Robot has returned to origin" << std::endl;
+    }
 }
 
 bool Robot::visitedNode(GraphNode* node, std::vector<GraphNode*> visited) {
