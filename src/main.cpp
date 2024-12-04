@@ -9,13 +9,13 @@ int main() {
 
     srand(time(NULL));
 
-    Graph graph(10);
+    Graph graph(50);
     graph.printGraph();
     std::cout << "-------------------\n";
 
     Controller controller(&graph);
     controller.map();
-    controller.printExploredMap();
+    // controller.printExploredMap();
 
     return 0;
 }

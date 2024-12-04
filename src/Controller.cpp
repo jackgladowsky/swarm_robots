@@ -51,7 +51,7 @@ void Controller::map() {
     int count = 0;
 
     while (mapping) {
-        if (count == 10) return;
+        // if (count == 10) return;
         for (size_t i=0; i < robots.size(); i++) {
             std::cout << "------------------------------------" << std::endl;
             std::cout << "Current Robot: " << i << "\n";
@@ -67,12 +67,26 @@ void Controller::map() {
             std::cout << "Size of explored: " << exploredMap->nodes.size() << "\n";
             std::cout << "Size of visited: " << visitedNodes.size() << "\n";
 
+            int seen;
+            for (int i = 0; i < 10; i++) {
+                seen = false;
+                for (int j = 0; j < visitedNodes.size(); j++) {
+                    if (visitedNodes[j]->NodeID == i) {
+                        seen = true;
+                    }
+                }
+                if (seen == false) {
+                    std::cout << "node " << i << " not visited\n";
+                }
+            }
+
             if (visitedNodes.size() == exploredMap->nodes.size()) {
+                std::cout << "visited nodes == explored nodes == " << visitedNodes.size() << "\n";
                 std::cout << "all nodes have been visited\n";
                 return;
             }
         }
-        count++;
+        // count++;
 
     }
 
